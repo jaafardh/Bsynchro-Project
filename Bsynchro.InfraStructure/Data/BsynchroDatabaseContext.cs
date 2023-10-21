@@ -22,8 +22,7 @@ namespace Bsynchro.InfraStructure.Data
                     .ValueGeneratedNever()
                     .HasColumnName("AccountID");
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-                entity.Property(e => e.Name).HasMaxLength(50);
-                entity.Property(e => e.Surname).HasMaxLength(50);
+                
 
                 entity.HasOne(d => d.Customer).WithMany(p => p.Accounts)
                     .HasForeignKey(d => d.CustomerId)
@@ -38,6 +37,8 @@ namespace Bsynchro.InfraStructure.Data
                 entity.Property(e => e.CustomerId)
                     .ValueGeneratedNever()
                     .HasColumnName("CustomerID");
+                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.Surname).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Transaction>(entity =>

@@ -10,7 +10,11 @@ namespace Bsynchro.Domain.Entities
     {
         public int CustomerId { get; set; }
 
-        public double? InitialCredit { get; set; }
+        public double? Balance { get; set; }
+
+        public string? Name { get; set; }
+
+        public string? Surname { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
     }

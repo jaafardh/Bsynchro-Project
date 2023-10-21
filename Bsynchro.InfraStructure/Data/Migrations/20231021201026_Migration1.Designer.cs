@@ -4,6 +4,7 @@ using Bsynchro.InfraStructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bsynchro.InfraStructure.Migrations
 {
     [DbContext(typeof(BsynchroDatabaseContext))]
-    partial class BsynchroDatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231021201026_Migration1")]
+    partial class Migration1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +51,7 @@ namespace Bsynchro.InfraStructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
 
-                    b.Property<double?>("Balance")
+                    b.Property<double?>("InitialCredit")
                         .HasColumnType("float");
 
                     b.Property<string>("Name")

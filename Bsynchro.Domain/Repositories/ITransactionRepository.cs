@@ -10,5 +10,6 @@ namespace Bsynchro.Domain.Repositories
 {
     public interface ITransactionRepository : IRepository<Transaction>
     {
+        Task<int> Transact (Transaction transaction);
     }
 }

@@ -10,5 +10,6 @@ namespace Bsynchro.Domain.Repositories
 {
     public interface IAccountRepository : IRepository<Account>
     {
+        public List<Account> GetCustomerAccounts(int customerID);
     }
 }
