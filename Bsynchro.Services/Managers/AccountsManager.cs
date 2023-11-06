@@ -1,14 +1,16 @@
 ﻿using Bsynchro.Domain.Entities;
 using Bsynchro.Domain.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace Bsynchro.Services.Managers
 {
     public class AccountsManager
     {
-        //private readonly ILogger<Account> _logger;
+        private readonly ILogger<AccountsManager> logger;
         private readonly IAccountRepository accountRepository;
-        public AccountsManager(IAccountRepository accountRepository)
+        public AccountsManager(ILogger<AccountsManager> logger,IAccountRepository accountRepository)
         {
+            this.logger = logger;
             this.accountRepository = accountRepository;
         }
         public async Task<List<Account>> GetAccounts()

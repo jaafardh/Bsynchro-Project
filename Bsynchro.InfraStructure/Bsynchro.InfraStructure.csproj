@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bsynchro.Domain\Bsynchro.Domain.csproj" />
+    <ProjectReference Include="..\Bsynchro.Services\Bsynchro.Services.csproj" />
   </ItemGroup>
 
 </Project>

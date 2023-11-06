@@ -14,6 +14,7 @@ namespace Bsynchro_Api
             services.AddDbContext<BsynchroDatabaseContext>(options => options.UseSqlServer(connectionString).
             ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.DetachedLazyLoadingWarning)));
 
+            services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<BsynchroDatabaseContext>>());
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<AccountsManager>>());
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<CustomersManager>>());
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<TransactionsManager>>());

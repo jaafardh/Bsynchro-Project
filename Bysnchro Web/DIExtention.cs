@@ -17,6 +17,7 @@ namespace Bysnchro_Web
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<AccountsManager>>());
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<CustomersManager>>());
             services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<TransactionsManager>>());
+            services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger<BysnchroSeed>>());
 
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
@@ -25,6 +26,7 @@ namespace Bysnchro_Web
             services.AddScoped<AccountsManager>();
             services.AddScoped<CustomersManager>();
             services.AddScoped<TransactionsManager>();
+            services.AddScoped<BysnchroSeed>();
 
             return services;
         }

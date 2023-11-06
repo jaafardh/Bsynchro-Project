@@ -11,5 +11,6 @@ namespace Bsynchro.Domain.Repositories
     public interface ICustomerRepository : IRepository<Customer>
     {
         Task<IQueryable<Account>> AddAccount(int customerId);
+        int Count();  
     }
 }

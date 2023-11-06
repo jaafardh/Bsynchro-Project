@@ -1,5 +1,6 @@
 ﻿using Bsynchro.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Bsynchro.InfraStructure.Data
 {
@@ -23,8 +24,9 @@ namespace Bsynchro.InfraStructure.Data
                 entity.ToTable("Account");
 
                 entity.Property(e => e.AccountId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("AccountID");
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("AccountID")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn); ;
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
                 
 
@@ -39,8 +41,9 @@ namespace Bsynchro.InfraStructure.Data
                 entity.ToTable("Customer");
 
                 entity.Property(e => e.CustomerId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("CustomerID");
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("CustomerID")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn); ;
                 entity.Property(e => e.Name).HasMaxLength(50);
                 entity.Property(e => e.Surname).HasMaxLength(50);
             });
@@ -50,8 +53,9 @@ namespace Bsynchro.InfraStructure.Data
                 entity.ToTable("Transaction");
 
                 entity.Property(e => e.TransactionId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("TransactionID");
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("TransactionID")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn); ;
                 entity.Property(e => e.TransactionDate).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Recipient).WithMany(p => p.TransactionRecipients)

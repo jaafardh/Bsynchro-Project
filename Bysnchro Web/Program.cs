@@ -1,3 +1,4 @@
+using Bsynchro.InfraStructure.Data;
 using Bysnchro_Web;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddBysnchroServices(connectionString);
 var app = builder.Build();
-
+await app.Services.CreateScope().ServiceProvider.GetRequiredService<BysnchroSeed>().SeedAsync();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

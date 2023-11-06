@@ -1,5 +1,8 @@
 ﻿using Bsynchro.Domain.Entities;
 using Bsynchro.Domain.Repositories;
+using Bsynchro.Services.DTOs;
+using Bsynchro.Services.Mappers;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,11 +14,13 @@ namespace Bsynchro.Services.Managers
 {
     public class CustomersManager
     {
+        private readonly ILogger<CustomersManager> logger;
         private readonly ICustomerRepository customerRepository;
         private readonly ITransactionRepository transactionRepository;
         private readonly IAccountRepository accountRepository;
-        public CustomersManager(ICustomerRepository customerRepository, ITransactionRepository transactionRepository,IAccountRepository accountRepository)
+        public CustomersManager(ILogger<CustomersManager> logger,ICustomerRepository customerRepository, ITransactionRepository transactionRepository,IAccountRepository accountRepository)
         {
+            this.logger = logger;
             this.customerRepository = customerRepository;
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
@@ -45,11 +50,31 @@ namespace Bsynchro.Services.Managers
             await customerRepository.DeleteRangeAsync(customers, false);
         }
 
-        public async Task<Customer> GetFullCustomer(int customerId)
+        public async Task<CustomerDTO> GetFullCustomer(int customerId)
         {
             var customer = await customerRepository.FindAsync(customerId);
-            customer.Accounts = accountRepository.GetCustomerAccounts(customerId);
-            return customer;
+            int[] accountsIds = accountRepository.GetCustomerAccountsId(customerId);
+            List<Transaction> sended = transactionRepository.GetCustomerSenderTransactions(accountsIds);
+            List<TransactionDTO> sendedDTO = new List<TransactionDTO>();
+            for(int i = 0; i < sended.Count; i++)
+            {
+                sendedDTO.Add(ObjectMapper.Mapper.Map<TransactionDTO>(sended[i]));
+            }
+            List<Transaction> recieved = transactionRepository.GetCustomerRecipientTransactions(accountsIds);
+            List<TransactionDTO> recievedDTO = new List<TransactionDTO>();
+            for(int i = 0; i < recieved.Count; i++)
+            {
+                recievedDTO.Add(ObjectMapper.Mapper.Map<TransactionDTO>(recieved[i]));
+            }
+            CustomerDTO customerDTO = new CustomerDTO
+            {
+                Name = customer.Name,
+                SurName = customer.Surname,
+                balance = (double)customer.Balance,
+                SendedTransaction = sendedDTO,
+                RecievedTransacton = recievedDTO
+            };
+            return customerDTO;
         }
 
         public async Task<int> UpdateCustomer(Customer customer)
@@ -59,23 +84,35 @@ namespace Bsynchro.Services.Managers
         public async Task<int> AddAccount(int customerId,double initialCredit)
         {
             var result = await customerRepository.AddAccount(customerId);
-            if (result == null) { return -1; }  //failed to add account
-            if(initialCredit > 0)
+            if (result == null) { return 0; }  //failed to add account
+            var accounts = result.ToList();
+            if (accounts.Count < 2) { return 0; } // failed in accounts
+            if (initialCredit > 0)
             {
-                var accounts = result.ToList();
-                if (accounts.Count < 2) { return -2; } // failed in accounts
                 Transaction transaction = new Transaction
                 {
                     SenderId = accounts[0].AccountId,
                     RecipientId = accounts.Last().AccountId,
                     Amount = initialCredit,
                 };
-                return await transactionRepository.Transact(transaction);
+                 int transResult = await transactionRepository.Transact(transaction);
+                if (transResult > 0) // success
+                {
+                    return accounts.Last().CustomerId;
+                }
+                else
+                {
+                    return transResult;
+                }
             }
             else
             {
-                return 1;
+                return accounts.Last().CustomerId;
             }
+        }
+        public bool IsEmpty()
+        {
+            return customerRepository.Count() == 0;
         }
     }
 }

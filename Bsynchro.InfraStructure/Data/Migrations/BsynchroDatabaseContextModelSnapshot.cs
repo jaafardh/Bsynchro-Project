@@ -25,8 +25,11 @@ namespace Bsynchro.InfraStructure.Migrations
             modelBuilder.Entity("Bsynchro.Domain.Entities.Account", b =>
                 {
                     b.Property<int>("AccountId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("AccountID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountId"));
 
                     b.Property<double?>("Balance")
                         .HasColumnType("float");
@@ -45,8 +48,11 @@ namespace Bsynchro.InfraStructure.Migrations
             modelBuilder.Entity("Bsynchro.Domain.Entities.Customer", b =>
                 {
                     b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("CustomerID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
                     b.Property<double?>("Balance")
                         .HasColumnType("float");
@@ -67,8 +73,11 @@ namespace Bsynchro.InfraStructure.Migrations
             modelBuilder.Entity("Bsynchro.Domain.Entities.Transaction", b =>
                 {
                     b.Property<int>("TransactionId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("TransactionID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
                     b.Property<double?>("Amount")
                         .HasColumnType("float");

@@ -1,4 +1,6 @@
-﻿namespace Bsynchro.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Bsynchro.Domain.Entities
 {
     public class Transaction
     {

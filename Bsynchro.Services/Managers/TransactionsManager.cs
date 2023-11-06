@@ -1,5 +1,6 @@
 ﻿using Bsynchro.Domain.Entities;
 using Bsynchro.Domain.Repositories;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace Bsynchro.Services.Managers
     public class TransactionsManager
     {
         private readonly ITransactionRepository transactionRepository;
-        public TransactionsManager(ITransactionRepository transactionRepository)
+        private readonly ILogger<TransactionsManager> logger;
+        public TransactionsManager(ILogger<TransactionsManager> logger,ITransactionRepository transactionRepository)
         {
+            this.logger = logger;
             this.transactionRepository = transactionRepository;
         }
         public async Task<List<Transaction>> GetTransactions()

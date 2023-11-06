@@ -14,15 +14,20 @@ namespace Bsynchro.InfraStructure.Repositories
             this.dbContext = dbContext;
         }
 
-        public List<Account> GetCustomerAccounts(int customerID)
+        public int[] GetCustomerAccountsId(int customerID)
         {
             var accounts = dbContext.Accounts.Where(x => x.CustomerId == customerID).ToList();
-            for(int i =0; i < accounts.Count; i++)
+            //for(int i =0; i < accounts.Count; i++)
+            //{
+            //    accounts[i].TransactionSenders = dbContext.Transactions.Where(x=>x.SenderId == accounts[i].AccountId).ToList();
+            //    accounts[i].TransactionRecipients = dbContext.Transactions.Where (x=>x.RecipientId == accounts[i].AccountId).ToList();
+            //}
+            int[] ids = new int[accounts.Count];
+            for(int i = 0; i < accounts.Count; i++)
             {
-                accounts[i].TransactionSenders = dbContext.Transactions.Where(x=>x.SenderId == accounts[i].AccountId).ToList();
-                accounts[i].TransactionRecipients = dbContext.Transactions.Where (x=>x.RecipientId == accounts[i].AccountId).ToList();
+                ids[i] = accounts[i].AccountId;
             }
-            return accounts;
+            return ids;
         }
     }
 }

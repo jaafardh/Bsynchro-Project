@@ -12,7 +12,7 @@ namespace Bsynchro.Services.DTOs
         public string Name { get; set; }
         public string SurName { get; set; }
         public double balance { get; set; }
-        public List<Transaction> SendedTransaction { get; set; }
-        public List<Transaction> RecievedTransacton { get; set; }
+        public List<TransactionDTO> SendedTransaction { get; set; }
+        public List<TransactionDTO> RecievedTransacton { get; set; }
     }
 }

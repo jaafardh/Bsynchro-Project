@@ -22,6 +22,7 @@ namespace Bsynchro.InfraStructure.Repositories
             {
                 return null;
             }
+            customer.Accounts = db.Accounts.Where(x => x.CustomerId == customerId).ToList();
             if(customer.Accounts.Count == 0)
             {
                 return null; // the customer must has an initial account 
@@ -42,6 +43,11 @@ namespace Bsynchro.InfraStructure.Repositories
                 return null;
             }
             return db.Accounts.Where(x=> x.CustomerId == customerId);
+        }
+
+        public int Count()
+        {
+            return db.Customers.Count();
         }
     }
 }

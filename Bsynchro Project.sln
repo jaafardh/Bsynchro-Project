@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bysnchro.Web", "Bysnchro We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bsynchro.InfraStructure", "Bsynchro.InfraStructure\Bsynchro.InfraStructure.csproj", "{0797A301-FBF7-463A-890C-2DDB4C2FA044}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bsynchro.Domain", "Bsynchro.Domain\Bsynchro.Domain.csproj", "{EA1324DB-B2EE-4568-81B0-C6B5F1BAEEFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bsynchro.Domain", "Bsynchro.Domain\Bsynchro.Domain.csproj", "{EA1324DB-B2EE-4568-81B0-C6B5F1BAEEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bsynchro.Services", "Bsynchro.Services\Bsynchro.Services.csproj", "{B21EDD7A-7C4F-4E36-9436-EC566F3470F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bsynchro.Services", "Bsynchro.Services\Bsynchro.Services.csproj", "{B21EDD7A-7C4F-4E36-9436-EC566F3470F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAPI", "TestAPI\TestAPI.csproj", "{B3574704-43AC-4A74-B70E-2B7EC5FBB4CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B21EDD7A-7C4F-4E36-9436-EC566F3470F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B21EDD7A-7C4F-4E36-9436-EC566F3470F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B21EDD7A-7C4F-4E36-9436-EC566F3470F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3574704-43AC-4A74-B70E-2B7EC5FBB4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3574704-43AC-4A74-B70E-2B7EC5FBB4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3574704-43AC-4A74-B70E-2B7EC5FBB4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3574704-43AC-4A74-B70E-2B7EC5FBB4CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
