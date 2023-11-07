@@ -15,7 +15,8 @@ namespace Bsynchro.InfraStructure.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BysnchroDatabase;Integrated Security=True;");
+            //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BysnchroDatabase;Integrated Security=True;");
+            optionsBuilder.UseSqlServer("Data Source=AREA-51\\SQLEXPRESS;Initial Catalog=TestData2;User ID=sa;;Pooling=False;Password=123;TrustServerCertificate=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
