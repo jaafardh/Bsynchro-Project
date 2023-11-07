@@ -1,1 +1,22 @@
-<p>add-account works!</p>
+<h5 class="text-md-center m-5">Add Account Page</h5>
+<div class="card" style="display: flex; justify-content: center; align-items: center; border:hidden">
+  <div class="card" style="border: 1px solid black; border-radius: 2px; padding: 5px;width:30%; align-items:center;">
+    <div class="form-label">
+      <label style="font-weight:bold">Customer Id:</label>
+    </div>
+    <div class="form-label">
+      <input style="text-align:center" placeholder="User ID" class="form-control" type="number" [(ngModel)]="userId" />
+    </div>
+    <div class="form-label">
+      <label style="font-weight:bold">Initial Credit:</label>
+    </div>
+    <div class="form-label">
+      <input style="text-align:center" placeholder="Initial Credit" class="form-control" type="number" [(ngModel)]="initialCredit" />
+    </div>
+    <div class="form-label" style="height: 10px;"></div>
+    <div style="vertical-align: central; text-align: center; padding: 5px;">
+      <button (click)="addAccount()" type="submit" style="background-color: lightgray; border-radius: 5px;">Add Account</button>
+    </div>
+    <div *ngIf="responseMessage" class="response-message">{{ responseMessage }}</div>
+  </div>
+</div>

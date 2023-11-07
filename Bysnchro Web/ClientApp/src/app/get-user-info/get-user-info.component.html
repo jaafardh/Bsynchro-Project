@@ -1,20 +1,45 @@
 <h5 class="text-md-center m-5">Get User Info</h5>
+<h6 class="text-md-center m-5" style="color:red;font-style:italic" *ngIf="errorOccurred == true" >{{errormessage}}</h6>
 
-
-  <div style="width: 100%; margin: 5%; display:flex">
-    <div style="width: 20%; padding: 1px;padding-right:5px; border-right: 1px solid black; display: flex; flex-direction: column;">
-      <div style="border: 1px solid black;border-radius:2px;padding:5px;">
-        <div class="form-label">
-          <input placeholder="User ID" class="form-control" />
-        </div>
-        <div class="form-label" style="height: 10px;"></div>
-        <div style=" vertical-align:central;text-align:center; padding:5px;">
-          <button (click)="GetUser()" type="submit" style="background-color:lightgray;border-radius:5px;">Get User Info</button>
-        </div>
+<div style="width: 100%; margin: 5%; display:flex">
+  <div style="width: 20%; padding: 1px;padding-right:5px; border-right: 1px solid black; display: flex; flex-direction: column;">
+    <div class="card" style="border: 1px solid black;border-radius:2px;padding:5px;">
+      <div class="form-label">
+        <input type="number" placeholder="User ID" class="form-control"  [(ngModel)]="customerId"/>
+      </div>
+      <div class="form-label" style="height: 10px;"></div>
+      <div style=" vertical-align:central;text-align:center; padding:5px;">
+        <button (click)="GetUser()" type="submit" style="background-color:lightgray;border-radius:5px;">Get User Info</button>
       </div>
     </div>
-    <div style="width: 70%; padding: 10px; background-color: #ececec;">
-      <label style="width:100%;height:100%;font-size:100px;border:1px solid black">hello world!hello world!hello world!hello world!</label>
-    </div>
   </div>
+  <div *ngIf="customerData" style="padding-left: 10px;">
+    <h1>Customer Information</h1>
+    <p><strong>Name:</strong> {{ customerData.Name }}</p>
+    <p><strong>Surname:</strong> {{ customerData.SurName }}</p>
+    <p><strong>Balance:</strong> {{ customerData.balance }}</p>
+    <h2>Sent Transactions</h2>
+    <ul>
+      <li *ngFor="let transaction of customerData.SendedTransaction">
+        <p><strong>Transaction ID:</strong> {{ transaction.TransactionId }}</p>
+        <p><strong>Transaction Date:</strong> {{ transaction.TransactionDate }}</p>
+        <p><strong>Sender ID:</strong> {{ transaction.SenderId }}</p>
+        <p><strong>Recipient ID:</strong> {{ transaction.RecipientId }}</p>
+        <p><strong>Amount:</strong> {{ transaction.Amount }}</p>
+      </li>
+    </ul>
+    <h2>Received Transactions</h2>
+    <ul>
+      <li *ngFor="let transaction of customerData.RecievedTransacton">
+        <p><strong>Transaction ID:</strong> {{ transaction.TransactionId }}</p>
+        <p><strong>Transaction Date:</strong> {{ transaction.TransactionDate }}</p>
+        <p><strong>Sender ID:</strong> {{ transaction.SenderId }}</p>
+        <p><strong>Recipient ID:</strong> {{ transaction.RecipientId }}</p>
+        <p><strong>Amount:</strong> {{ transaction.Amount }}</p>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
 
