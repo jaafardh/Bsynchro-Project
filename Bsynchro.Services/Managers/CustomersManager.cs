@@ -51,6 +51,7 @@ namespace Bsynchro.Services.Managers
         public async Task<CustomerDTO> GetFullCustomer(int customerId)
         {
             var customer = await customerRepository.FindAsync(customerId);
+            if(customer == null) { return null; }
             int[] accountsIds = accountRepository.GetCustomerAccountsId(customerId);
             List<Transaction> sended = transactionRepository.GetCustomerSenderTransactions(accountsIds);
             List<TransactionDTO> sendedDTO = new List<TransactionDTO>();

@@ -11,5 +11,7 @@ export class GetUserInfoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  GetUser() {
 
+  }
 }

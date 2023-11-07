@@ -29,6 +29,16 @@ export class SearchFlightsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  addFlight() {
+    const newFlight: FlightRm = {
+      airline: "Emirates",
+      remainingNumberOfSeats: 200,
+      deparature: { time: Date.now().toString(), Place: "Dubai" },
+      arrival: { time: Date.now().toString(), Place: "New York" },
+      price: "800",
+    };
+    this.searchResult.push(newFlight);
+  }
 
 }
 

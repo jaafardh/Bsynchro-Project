@@ -16,7 +16,8 @@ import { GetUserInfoComponent } from './get-user-info/get-user-info.component';
     NavMenuComponent,
     SearchFlightsComponent,
     AddAccountComponent,
-    GetUserInfoComponent
+    GetUserInfoComponent,
+    SearchFlightsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -25,6 +26,7 @@ import { GetUserInfoComponent } from './get-user-info/get-user-info.component';
     RouterModule.forRoot([
       { path: '', component: GetUserInfoComponent, pathMatch: 'full' },
       { path: 'AddAccount', component: AddAccountComponent },
+      { path: 'Flights', component: SearchFlightsComponent },
     ])
   ],
   providers: [],

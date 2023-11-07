@@ -33,28 +33,16 @@ namespace Bsynchro_Api.Controllers
             return Ok("The Account is opened Successfully with id = "+ result);
             
         }
-        [HttpGet("GetUser")]
+        [HttpGet("GetUser/{customerId}")]
         public async Task<ActionResult> GetUserInfo(int customerId)
         {
             var x = await customerManager.GetFullCustomer(customerId);
-
+            if(x == null) { return NotFound(); }
             string json = JsonConvert.SerializeObject(x, Formatting.Indented, new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             });
             return Ok(json);
-
-
-            /*CustomerDTO customer = new CustomerDTO
-            {
-                Name = x.Name,
-                SurName = x.Surname,
-                balance = (double)x.Balance,
-                SendedTransaction = new List<Transaction>(),
-                RecievedTransacton = new List<Transaction>()
-            };*/
-
-
         }
     }
 }

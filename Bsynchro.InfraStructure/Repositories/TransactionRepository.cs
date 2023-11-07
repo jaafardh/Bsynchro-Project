@@ -35,11 +35,15 @@ namespace Bsynchro.InfraStructure.Repositories
 
         public List<Transaction> GetCustomerRecipientTransactions(int[] accountsId)
         {
+            if (accountsId == null) { return new List<Transaction>(); }
+            if(accountsId.Length == 0) { return new List<Transaction>(); }
             var transcripts = db.Transactions.Where(tx => accountsId.Contains(tx.RecipientId)).ToList();
             return transcripts;
         }
         public List<Transaction> GetCustomerSenderTransactions(int[] accountsId)
         {
+            if (accountsId == null) { return new List<Transaction>(); }
+            if (accountsId.Length == 0) { return new List<Transaction>(); }
             var transcripts = db.Transactions.Where(tx => accountsId.Contains(tx.SenderId)).ToList();
             return transcripts;
         }
