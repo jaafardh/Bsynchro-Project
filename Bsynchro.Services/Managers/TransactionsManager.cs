@@ -12,10 +12,8 @@ namespace Bsynchro.Services.Managers
     public class TransactionsManager
     {
         private readonly ITransactionRepository transactionRepository;
-        private readonly ILogger<TransactionsManager> logger;
-        public TransactionsManager(ILogger<TransactionsManager> logger,ITransactionRepository transactionRepository)
+        public TransactionsManager(ITransactionRepository transactionRepository)
         {
-            this.logger = logger;
             this.transactionRepository = transactionRepository;
         }
         public async Task<List<Transaction>> GetTransactions()

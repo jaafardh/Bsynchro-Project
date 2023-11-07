@@ -15,7 +15,7 @@ namespace Bsynchro.InfraStructure.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<IQueryable<Account>> AddAccount(int customerId) 
+        public async Task<List<Account>> AddAccount(int customerId) 
         {
             var customer = await db.Customers.FindAsync(customerId);
             if (customer == null)
@@ -42,7 +42,7 @@ namespace Bsynchro.InfraStructure.Repositories
             {
                 return null;
             }
-            return db.Accounts.Where(x=> x.CustomerId == customerId);
+            return db.Accounts.Where(x=> x.CustomerId == customerId).ToList();
         }
 
         public int Count()

@@ -14,13 +14,11 @@ namespace Bsynchro.Services.Managers
 {
     public class CustomersManager
     {
-        private readonly ILogger<CustomersManager> logger;
         private readonly ICustomerRepository customerRepository;
         private readonly ITransactionRepository transactionRepository;
         private readonly IAccountRepository accountRepository;
-        public CustomersManager(ILogger<CustomersManager> logger,ICustomerRepository customerRepository, ITransactionRepository transactionRepository,IAccountRepository accountRepository)
+        public CustomersManager(ICustomerRepository customerRepository, ITransactionRepository transactionRepository,IAccountRepository accountRepository)
         {
-            this.logger = logger;
             this.customerRepository = customerRepository;
             this.transactionRepository = transactionRepository;
             this.accountRepository = accountRepository;
@@ -98,7 +96,7 @@ namespace Bsynchro.Services.Managers
                  int transResult = await transactionRepository.Transact(transaction);
                 if (transResult > 0) // success
                 {
-                    return accounts.Last().CustomerId;
+                    return accounts.Last().AccountId;
                 }
                 else
                 {
@@ -107,7 +105,7 @@ namespace Bsynchro.Services.Managers
             }
             else
             {
-                return accounts.Last().CustomerId;
+                return accounts.Last().AccountId;
             }
         }
         public bool IsEmpty()

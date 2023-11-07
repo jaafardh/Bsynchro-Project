@@ -6,11 +6,9 @@ namespace Bsynchro.Services.Managers
 {
     public class AccountsManager
     {
-        private readonly ILogger<AccountsManager> logger;
         private readonly IAccountRepository accountRepository;
-        public AccountsManager(ILogger<AccountsManager> logger,IAccountRepository accountRepository)
+        public AccountsManager(IAccountRepository accountRepository)
         {
-            this.logger = logger;
             this.accountRepository = accountRepository;
         }
         public async Task<List<Account>> GetAccounts()
